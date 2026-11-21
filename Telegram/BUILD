@@ -1934,17 +1934,6 @@ ios_application(
     strings = [
         ":AppStringResources",
     ],
-        extensions = [],
-    ],
-    frameworks = [
-        ":MtProtoKitFramework",
-        ":SwiftSignalKitFramework",
-        ":PostboxFramework",
-        ":TelegramCoreFramework",
-        ":TelegramUIFramework",
-    strings = [
-        ":AppStringResources",
-    ],
     extensions = [],
     # Embed the in-repo tgwatch watch app (Telegram/WatchApp) under Watch/ only when
     # --//Telegram:embedWatchApp is set (Make.py sets it for device configs when
