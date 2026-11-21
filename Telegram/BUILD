@@ -1126,9 +1126,6 @@ ios_extension(
     ],
     minimum_os_version = minimum_os_version,
     provisioning_profile = None,
-        ":disableProvisioningProfilesSetting": None,
-        "//conditions:default": "@build_configuration//provisioning:Share.mobileprovision",
-    }),
     deps = [":ShareExtensionLib"],
     frameworks = [
         ":TelegramUIFramework"
@@ -1910,10 +1907,7 @@ ios_application(
     ),
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = select({
-        ":disableProvisioningProfilesSetting": None,
-        "//conditions:default": ":Telegram_xcode_profile" if telegram_use_xcode_managed_codesigning else "@build_configuration//provisioning:Telegram.mobileprovision",
-    }),
+    provisioning_profile = None,
     entitlements = ":TelegramEntitlements.entitlements",
     infoplists = [
         ":TelegramInfoPlist",
@@ -1941,16 +1935,17 @@ ios_application(
         ":AppStringResources",
     ],
         extensions = [],
-        ":disableExtensionsSetting": [],
-        "//conditions:default": [
-            ":ShareExtension",
-            ":NotificationContentExtension",
-            ":NotificationServiceExtension" + notificationServiceExtensionVersion,
-            ":IntentsExtension",
-            ":WidgetExtension",
-            ":BroadcastUploadExtension",
-        ],
-    }),
+    ],
+    frameworks = [
+        ":MtProtoKitFramework",
+        ":SwiftSignalKitFramework",
+        ":PostboxFramework",
+        ":TelegramCoreFramework",
+        ":TelegramUIFramework",
+    strings = [
+        ":AppStringResources",
+    ],
+    extensions = [],
     # Embed the in-repo tgwatch watch app (Telegram/WatchApp) under Watch/ only when
     # --//Telegram:embedWatchApp is set (Make.py sets it for device configs when
     # --embedWatchApp is passed). Off by default, so simulator/dev builds are unaffected.
