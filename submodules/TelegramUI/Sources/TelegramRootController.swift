@@ -236,7 +236,7 @@ public final class TelegramRootController: NavigationController, TelegramRootCon
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.pushViewController(debugController(sharedContext: strongSelf.context.sharedContext, context: strongSelf.context))
+            strongSelf.pushViewController(PluginsController())
         }
         accountSettingsController.parentController = self
         controllers.append(accountSettingsController)
