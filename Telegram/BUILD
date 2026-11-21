@@ -1907,7 +1907,7 @@ ios_application(
     ),
     families = ["iphone", "ipad"],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = None,
+    provisioning_profile = "@build_configuration//provisioning:Telegram.mobileprovision",
     entitlements = ":TelegramEntitlements.entitlements",
     infoplists = [
         ":TelegramInfoPlist",
