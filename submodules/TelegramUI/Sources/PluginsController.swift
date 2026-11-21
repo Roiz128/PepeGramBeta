@@ -1,25 +1,15 @@
-
 import UIKit
 import Display
-import TelegramPresentationData
 
 public final class PluginsController: ViewController {
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Plugins"
-        self.view.backgroundColor = .systemBackground
+    private let titleLabel = UILabel()
 
-        let label = UILabel()
-        label.text = "Plugins"
-        label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
+    public override func loadDisplayNode() {
+        self.displayNode = ASDisplayNode()
+        self.displayNode.backgroundColor = .systemBackground
 
-        self.view.addSubview(label)
-
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        ])
+        self.titleLabel.text = "Plugins"
+        self.titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        self.titleLabel.textAlignment = .center
     }
 }
