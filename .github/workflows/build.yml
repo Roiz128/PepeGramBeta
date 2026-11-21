@@ -28,11 +28,6 @@ jobs:
           cp -R $GITHUB_WORKSPACE /Users/Shared/
           mv /Users/Shared/$(basename $GITHUB_WORKSPACE) /Users/Shared/telegram-ios
 
-      - name: Show build help
-        run: |
-          cd /Users/Shared/telegram-ios
-          python3 build-system/Make/Make.py build --help
-
       - name: Build the App
         run: |
           set -x
@@ -57,6 +52,7 @@ jobs:
           python3 build-system/Make/ImportCertificates.py --path build-system/fake-codesigning/certs
           python3 -u build-system/Make/Make.py \
             --bazelUserRoot="$BAZEL_USER_ROOT" \
+            --bazelArguments="--//Telegram:disableExtensions" \
             build \
             --configurationPath="build-system/appstore-configuration.json" \
             --codesigningInformationPath=build-system/fake-codesigning \
