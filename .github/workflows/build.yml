@@ -48,7 +48,7 @@ jobs:
           for f in build-system/fake-codesigning/profiles/*.mobileprovision; do
             echo "Regenerating $f"
             security cms -D -i "$f" -o /tmp/profile.plist
-            /usr/libexec/PlistBuddy -c "Set :ExpirationDate 2036-01-01T00:00:00Z" /tmp/profile.plist
+            /usr/libexec/PlistBuddy -c "Set :ExpirationDate 2036-01-01 00:00:00 +0000" /tmp/profile.plist
             openssl smime -sign -signer /tmp/cert.pem -inkey /tmp/key.pem -certfile /tmp/cert.pem -nodetach -outform der -in /tmp/profile.plist -out "$f"   
           done
           python3 -u build-system/Make/Make.py \
