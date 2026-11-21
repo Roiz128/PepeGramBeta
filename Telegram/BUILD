@@ -1940,7 +1940,7 @@ ios_application(
     strings = [
         ":AppStringResources",
     ],
-    extensions = select({
+        extensions = [],
         ":disableExtensionsSetting": [],
         "//conditions:default": [
             ":ShareExtension",
