@@ -1125,7 +1125,7 @@ ios_extension(
         ":AppNameInfoPlist",
     ],
     minimum_os_version = minimum_os_version,
-    provisioning_profile = select({
+    provisioning_profile = None,
         ":disableProvisioningProfilesSetting": None,
         "//conditions:default": "@build_configuration//provisioning:Share.mobileprovision",
     }),
